@@ -6,11 +6,11 @@ services:
 
   # Observability
 
-  grafana:
+  grafana_:
     image: grafana/grafana:9.1.6
-    container_name: grafana
+    container_name: grafana_
     depends_on:
-      - prometheus
+      - prometheus_
     ports:
       - "3000:3000"
     environment:
@@ -19,9 +19,9 @@ services:
     volumes:
       - ./platform/grafana/dashboards:/etc/grafana/provisioning/dashboards
 
-  prometheus:
+  prometheus_:
     image: prom/prometheus:v2.36.2
-    container_name: prometheus
+    container_name: prometheus_
     ports:
       - "9090:9090"
     volumes:
