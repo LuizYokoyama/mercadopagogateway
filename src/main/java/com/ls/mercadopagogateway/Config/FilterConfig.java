@@ -11,19 +11,5 @@ import org.springframework.http.MediaType;
 @Configuration
 public class FilterConfig {
 
-    @Bean
-    public RouteLocator routes(RouteLocatorBuilder builder, ObjectMapper objectMapper) {
 
-        return builder
-                .routes()
-                .route("path_route_change",
-                        r -> r.path("/mercado-pago/link-pagamento")
-                                .filters(f -> f.addRequestHeader("Authorization", "Bearer TOKEN")
-                                        .rewritePath("/mercado-pago/link-pagamento", "/checkout/preferences")
-                                        .modifyRequestBody(String.class, String.class, MediaType.APPLICATION_JSON_VALUE,
-                                                new RequestBodyRewrite(objectMapper))
-                                )
-                                .uri("https://api.mercadopago.com/"))
-                .build();
-    }
 }

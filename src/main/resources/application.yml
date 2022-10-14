@@ -7,3 +7,13 @@ spring:
   cloud:
     gateway:
       routes:
+      - id: path_route_change
+        uri: https://api.mercadopago.com/
+        predicates:
+        - Path=/mercado-pago/link-pagamento
+        filters:
+        - RewritePath=/mercado-pago/link-pagamento, /checkout/preferences
+        - AddRequestHeader=Authorization, Bearer <TOKEN>
+        - RequestBodyChange
+
+
